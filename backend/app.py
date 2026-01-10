@@ -37,15 +37,15 @@ def simulate():
         f.write(engine_output)
 
     
-    parsed = json.load(engine_output)
+    parsed = json.loads(engine_output)
 
     # Load JSON properly
-    with open("output.json", "r") as f:
+    with open("output.json", "w") as f:
         result = json.dump(parsed,f,indent=2)
 
-    print("RETURNING TO FRONTEND:", result)
+    print("RETURNING TO FRONTEND:", parsed)
 
-    return jsonify(result)
+    return jsonify(parsed)
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     app.run(port=8000)
