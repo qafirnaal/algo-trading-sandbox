@@ -5,7 +5,7 @@ AXIOM is a simulation-first, educational platform designed to help users underst
 
 The project focuses on learning and explainability, not profit or execution.
 
-AXIOM is built as a modular system with a high-performance C++ core, a lightweight API layer, and a modern frontend for visualization.
+AXIOM is built as a modular system with a high-performance C++ core, a lightweight backend layer, and a modern frontend for visualization.
 
 Disclaimer:  
 AXIOM is strictly for educational purposes.  
@@ -33,12 +33,12 @@ AXIOM follows a clean, layered architecture:
 
 Frontend (React)  
 ↓  
-Backend (FastAPI)  
+Backend (Flask)  
 ↓  
 C++ Simulation Engine  
 
 - The C++ engine performs all simulation, strategy execution, and metric computation.
-- FastAPI acts as a thin orchestration layer.
+- The Flask backend acts as a thin orchestration layer that invokes the engine and returns results.
 - The frontend focuses on interaction and visualization.
 
 Each layer is independent and replaceable.
@@ -56,7 +56,7 @@ Each layer is independent and replaceable.
 │   │   ├── input.json            Local test input
 │   │   └── json/                 nlohmann/json library
 │   │
-│   ├── app/                      FastAPI application
+│   ├── app.py                    Flask backend entry point
 │   ├── input.json                Backend test input
 │   ├── mockOutput.json
 │   └── output.json
@@ -133,7 +133,7 @@ cd backend/Engine
 
 ---
 
-### 2. Running the FastAPI Backend
+### 2. Running the Flask Backend
 
 From the repository root:
 
@@ -146,19 +146,13 @@ source venv/bin/activate
 
 Install dependencies:
 
-pip install fastapi uvicorn
+pip install flask
 
 Run the backend:
 
-uvicorn app.main:app --reload
+python app.py
 
-The API will be available at:
-
-http://127.0.0.1:8000
-
-Swagger documentation:
-
-http://127.0.0.1:8000/docs
+The backend server will start locally (typically on port 5000).
 
 ---
 
