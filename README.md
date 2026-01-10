@@ -172,30 +172,6 @@ Open the URL shown in the terminal (usually http://localhost:5173).
 
 ---
 
-## LearnSphere Alignment
-
-AXIOM aligns with the LearnSphere track by focusing on:
-- conceptual understanding over outcomes
-- safe experimentation
-- explainability of algorithmic decision-making
-- learning without financial risk
-
----
-
-## Planned On-Site Extensions
-
-The following features are designed as extensions of the existing engine and are intended to be implemented during the on-site hackathon phase:
-
-- Strategy comparison across different market regimes
-- Sensitivity analysis of strategy parameters
-- Visual trade annotations on charts
-- Educational explainers for metrics and signals
-- Additional simple strategies (momentum, mean reversion)
-
-These build directly on the current architecture.
-
----
-
 ## Team
 
 AXIOM is built by a team of undergraduate engineers with interests in:
