@@ -1,0 +1,14 @@
+{
+  "price": [100, 101, 102, 101, 103],
+  "trades": [
+    { "t": 1, "side": "buy", "price": 101 },
+    { "t": 3, "side": "sell", "price": 101 }
+  ],
+  "pnl": [0, 0.5, 1.0, 0.8, 1.5],
+  "metrics": {
+    "total_pnl": 1.5,
+    "max_drawdown": 0.2,
+    "win_rate": 0.5,
+    "trade_count": 2
+  }
+}

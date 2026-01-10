@@ -1,0 +1,114 @@
+/* GLOBAL */
+body {
+  margin: 0;
+  background-color: #f5f7fb;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: #111827;
+}
+
+/* APP CONTAINER */
+.app-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* HEADINGS */
+h1 {
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* DISCLAIMER */
+.disclaimer {
+  background: #fff4f4;
+  color: #b00020;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* FORM */
+.form-row {
+  margin-bottom: 14px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #2563eb;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* METRICS */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.metric {
+  background: #f9fafb;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.metric span {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.metric strong {
+  font-size: 22px;
+  display: block;
+  margin-top: 4px;
+}

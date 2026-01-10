@@ -1,0 +1,1 @@
+{"market": "trending", "timesteps": 100, "seed": 42, "strategy": {"type": "ma_crossover", "short_window": 3, "long_window": 5, "position_size": 1}}
