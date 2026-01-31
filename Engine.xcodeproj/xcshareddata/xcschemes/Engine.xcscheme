@@ -36,7 +36,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/devrathore/Desktop/algo-trading-sandbox"
+      customWorkingDirectory = "/Users/siddharthnair/Documents/AXIOM---algo-trading-sandbox/backend"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -54,7 +54,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = ""
+            argument = "../input.json"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

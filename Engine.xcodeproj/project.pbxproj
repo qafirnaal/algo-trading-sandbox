@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		813DCF4B2F2EBF1F00A409D3 /* strategy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 813DCF4A2F2EBF1700A409D3 /* strategy.cpp */; };
+		81A8C4ED2F22E47D003F255A /* MarketSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A8C4D02F22E47D003F255A /* MarketSimulator.cpp */; };
+		81A8C4EE2F22E47D003F255A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A8C4CF2F22E47D003F255A /* main.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		81B6077A2F105B64003A6903 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -19,17 +25,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		813DCF4A2F2EBF1700A409D3 /* strategy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strategy.cpp; sourceTree = "<group>"; };
+		81A8C4C82F22E47D003F255A /* config.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
+		81A8C4C92F22E47D003F255A /* MarketSimulator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MarketSimulator.hpp; sourceTree = "<group>"; };
+		81A8C4CB2F22E47D003F255A /* PriceSeries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PriceSeries.hpp; sourceTree = "<group>"; };
+		81A8C4CD2F22E47D003F255A /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
+		81A8C4CF2F22E47D003F255A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		81A8C4D02F22E47D003F255A /* MarketSimulator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MarketSimulator.cpp; sourceTree = "<group>"; };
+		81A8C4D32F22E47D003F255A /* engine.exe */ = {isa = PBXFileReference; lastKnownFileType = file; path = engine.exe; sourceTree = "<group>"; };
+		81A8C4D42F22E47D003F255A /* input.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = input.json; sourceTree = "<group>"; };
+		81A8C4D62F22E47D003F255A /* app.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = app.py; sourceTree = "<group>"; };
+		81A8C4D72F22E47D003F255A /* input.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = input.json; sourceTree = "<group>"; };
+		81A8C4D82F22E47D003F255A /* mockOutput.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mockOutput.json; sourceTree = "<group>"; };
+		81A8C4D92F22E47D003F255A /* output.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = output.json; sourceTree = "<group>"; };
+		81A8C4DB2F22E47D003F255A /* vite.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = vite.svg; sourceTree = "<group>"; };
+		81A8C4DD2F22E47D003F255A /* react.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = react.svg; sourceTree = "<group>"; };
+		81A8C4DF2F22E47D003F255A /* App.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = App.css; sourceTree = "<group>"; };
+		81A8C4E02F22E47D003F255A /* App.jsx */ = {isa = PBXFileReference; lastKnownFileType = text; path = App.jsx; sourceTree = "<group>"; };
+		81A8C4E12F22E47D003F255A /* index.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = index.css; sourceTree = "<group>"; };
+		81A8C4E22F22E47D003F255A /* main.jsx */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsx; sourceTree = "<group>"; };
+		81A8C4E32F22E47D003F255A /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
+		81A8C4E52F22E47D003F255A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		81A8C4E62F22E47D003F255A /* eslint.config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = eslint.config.js; sourceTree = "<group>"; };
+		81A8C4E72F22E47D003F255A /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		81A8C4E82F22E47D003F255A /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		81A8C4E92F22E47D003F255A /* package-lock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "package-lock.json"; sourceTree = "<group>"; };
+		81A8C4EA2F22E47D003F255A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		81A8C4EB2F22E47D003F255A /* vite.config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = vite.config.js; sourceTree = "<group>"; };
+		81A8C4F02F22E6C7003F255A /* strategy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = strategy.hpp; sourceTree = "<group>"; };
 		81B6077C2F105B64003A6903 /* Engine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Engine; sourceTree = BUILT_PRODUCTS_DIR; };
-		81B6079D2F107266003A6903 /* input.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = input.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		81B6077E2F105B64003A6903 /* Engine */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Engine;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		81B607792F105B64003A6903 /* Frameworks */ = {
@@ -42,11 +67,109 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81A8C4CC2F22E47D003F255A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4F02F22E6C7003F255A /* strategy.hpp */,
+				81A8C4C82F22E47D003F255A /* config.hpp */,
+				81A8C4C92F22E47D003F255A /* MarketSimulator.hpp */,
+				81A8C4CB2F22E47D003F255A /* PriceSeries.hpp */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		81A8C4CE2F22E47D003F255A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4CD2F22E47D003F255A /* json.hpp */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		81A8C4D22F22E47D003F255A /* source */ = {
+			isa = PBXGroup;
+			children = (
+				813DCF4A2F2EBF1700A409D3 /* strategy.cpp */,
+				81A8C4CF2F22E47D003F255A /* main.cpp */,
+				81A8C4D02F22E47D003F255A /* MarketSimulator.cpp */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		81A8C4D52F22E47D003F255A /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4CC2F22E47D003F255A /* include */,
+				81A8C4CE2F22E47D003F255A /* json */,
+				81A8C4D22F22E47D003F255A /* source */,
+				81A8C4D32F22E47D003F255A /* engine.exe */,
+				81A8C4D42F22E47D003F255A /* input.json */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		81A8C4DA2F22E47D003F255A /* backend */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4D52F22E47D003F255A /* Engine */,
+				81A8C4D62F22E47D003F255A /* app.py */,
+				81A8C4D72F22E47D003F255A /* input.json */,
+				81A8C4D82F22E47D003F255A /* mockOutput.json */,
+				81A8C4D92F22E47D003F255A /* output.json */,
+			);
+			path = backend;
+			sourceTree = "<group>";
+		};
+		81A8C4DC2F22E47D003F255A /* public */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4DB2F22E47D003F255A /* vite.svg */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
+		81A8C4DE2F22E47D003F255A /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4DD2F22E47D003F255A /* react.svg */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		81A8C4E42F22E47D003F255A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4DE2F22E47D003F255A /* assets */,
+				81A8C4DF2F22E47D003F255A /* App.css */,
+				81A8C4E02F22E47D003F255A /* App.jsx */,
+				81A8C4E12F22E47D003F255A /* index.css */,
+				81A8C4E22F22E47D003F255A /* main.jsx */,
+				81A8C4E32F22E47D003F255A /* styles.css */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		81A8C4EC2F22E47D003F255A /* frontend */ = {
+			isa = PBXGroup;
+			children = (
+				81A8C4DC2F22E47D003F255A /* public */,
+				81A8C4E42F22E47D003F255A /* src */,
+				81A8C4E52F22E47D003F255A /* .gitignore */,
+				81A8C4E62F22E47D003F255A /* eslint.config.js */,
+				81A8C4E72F22E47D003F255A /* index.html */,
+				81A8C4E82F22E47D003F255A /* package.json */,
+				81A8C4E92F22E47D003F255A /* package-lock.json */,
+				81A8C4EA2F22E47D003F255A /* README.md */,
+				81A8C4EB2F22E47D003F255A /* vite.config.js */,
+			);
+			path = frontend;
+			sourceTree = "<group>";
+		};
 		81B607732F105B64003A6903 = {
 			isa = PBXGroup;
 			children = (
-				81B6079D2F107266003A6903 /* input.json */,
-				81B6077E2F105B64003A6903 /* Engine */,
+				81A8C4DA2F22E47D003F255A /* backend */,
+				81A8C4EC2F22E47D003F255A /* frontend */,
 				81B6077D2F105B64003A6903 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,9 +196,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				81B6077E2F105B64003A6903 /* Engine */,
 			);
 			name = Engine;
 			packageProductDependencies = (
@@ -124,6 +244,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A8C4ED2F22E47D003F255A /* MarketSimulator.cpp in Sources */,
+				81A8C4EE2F22E47D003F255A /* main.cpp in Sources */,
+				813DCF4B2F2EBF1F00A409D3 /* strategy.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
