@@ -3,6 +3,11 @@
 #include "../include/config.hpp"
 #include <iostream>
 #include <vector>
+#include <string>
+#include <map>
+#include "../json/json.hpp"
+
+using json = nlohmann::json;
 
 inline bool evaluateCondition(
     const MarketSimulator& sim,
@@ -19,23 +24,26 @@ inline bool evaluateCondition(
     return false;
 }
 
+SignalType signalFromString(const std::string& s) {
+    if (s == "RSI") return SignalType::RSI;
+    if (s == "VOLATILITY") return SignalType::VOLATILITY;
+    if (s == "VOLATILITY_MA") return SignalType::VOLATILITY_MA;
+    if (s == "MA_SHORT") return SignalType::MA_SHORT;
+    if (s == "MA_LONG") return SignalType::MA_LONG;
+    throw std::runtime_error("Unknown signal: " + s);
+}
+
 
 int main() {
-
-    // --------------------------------------------------
-    // 1. Market config
-    // --------------------------------------------------
+    json input;
+    std::cin >> input;
     Config cfg;
-    cfg.timesteps = 2000;
-    cfg.market = "Mean Reverting";
-    cfg.seed = 42;
+    cfg.market = input["market"];
+    cfg.timesteps = input["timesteps"];
+    cfg.seed = input["seed"];
 
     MarketSimulator sim(cfg);
     sim.runMarket();
-
-    // --------------------------------------------------
-    // 2. Compute signals
-    // --------------------------------------------------
     sim.computeRSI(14);
     sim.computeVolatility(20);
     sim.computeMovingAverageOnSignal(
@@ -46,92 +54,99 @@ int main() {
 
     const auto& prices = sim.getPrices();
 
-    // --------------------------------------------------
-    // 3. Define strategies
-    // --------------------------------------------------
     Strategy strategy;
     strategy.name = "User Strategy";
 
-    // BUY conditions
-    strategy.buy.push_back({
-        SignalType::RSI, '<',
-        OperandType::CONSTANT,
-        SignalType::RSI,
-        30.0
-    });
+    for (const auto& c : input["strategy"]["buy"]) {
+        Condition cond;
+        cond.lhs = signalFromString(c["lhs"]);
+        cond.op = c["op"].get<std::string>()[0];
 
-    strategy.buy.push_back({
-        SignalType::VOLATILITY, '>',
-        OperandType::SIGNAL,
-        SignalType::VOLATILITY_MA,
-        0.0
-    });
+        if (c["rhs_type"] == "CONSTANT") {
+            cond.rhs_type = OperandType::CONSTANT;
+            cond.rhs_value = c["rhs_value"];
+        } else {
+            cond.rhs_type = OperandType::SIGNAL;
+            cond.rhs_signal = signalFromString(c["rhs_signal"]);
+        }
 
-    // SELL conditions
-    strategy.sell.push_back({
-        SignalType::RSI, '>',
-        OperandType::CONSTANT,
-        SignalType::RSI,
-        70.0
-    });
+        strategy.buy.push_back(cond);
+    }
 
-    strategy.sell.push_back({
-        SignalType::VOLATILITY, '<',
-        OperandType::SIGNAL,
-        SignalType::VOLATILITY_MA,
-        0.0
-    });
+    for (const auto& c : input["strategy"]["sell"]) {
+        Condition cond;
+        cond.lhs = signalFromString(c["lhs"]);
+        cond.op = c["op"].get<std::string>()[0];
 
-    std::vector<Strategy> strategies = {
-        strategy
+        if (c["rhs_type"] == "CONSTANT") {
+            cond.rhs_type = OperandType::CONSTANT;
+            cond.rhs_value = c["rhs_value"];
+        } else {
+            cond.rhs_type = OperandType::SIGNAL;
+            cond.rhs_signal = signalFromString(c["rhs_signal"]);
+        }
+
+        strategy.sell.push_back(cond);
+    }
+
+    bool position_open = false;
+    double entry_price = 0.0;
+
+    std::vector<json> trades;
+    double equity = 0.0;
+    double peak = 0.0;
+    double max_dd = 0.0;
+    int wins = 0;
+
+    for (int t = 50; t < (int)prices.size(); t++) {
+        bool buy = true;
+        for (const auto& cond : strategy.buy)
+            buy &= evaluateCondition(sim, cond, t);
+
+        bool sell = true;
+        for (const auto& cond : strategy.sell)
+            sell &= evaluateCondition(sim, cond, t);
+
+        if (!position_open && buy) {
+            position_open = true;
+            entry_price = prices[t];
+            trades.push_back({
+                {"t", t},
+                {"type", "BUY"},
+                {"price", prices[t]}
+            });
+        }
+        else if (position_open && sell) {
+            position_open = false;
+            double pnl = prices[t] - entry_price;
+
+            equity += pnl;
+            if (pnl > 0) wins++;
+
+            peak = std::max(peak, equity);
+            max_dd = std::max(max_dd, peak - equity);
+
+            trades.push_back({
+                {"t", t},
+                {"type", "SELL"},
+                {"price", prices[t]},
+                {"pnl", pnl}
+            });
+        }
+    }
+
+    int num_trades = wins > 0 ? wins : trades.size() / 2;
+
+    json output;
+    output["prices"] = prices;
+    output["trades"] = trades;
+    output["metrics"] = {
+        {"total_pnl", equity},
+        {"max_drawdown", max_dd},
+        {"win_rate", num_trades > 0 ? (double)wins / num_trades : 0.0},
+        {"num_trades", num_trades}
     };
 
-    std::vector<StrategyState> states(strategies.size());
-
-    // --------------------------------------------------
-    // 4. Run strategies
-    // --------------------------------------------------
-    for (int t = 50; t < (int)prices.size(); t++) {
-
-        for (size_t i = 0; i < strategies.size(); i++) {
-
-            auto& strat = strategies[i];
-            auto& state = states[i];
-
-            bool buy = true;
-            for (const auto& cond : strat.buy)
-                buy &= evaluateCondition(sim, cond, t);
-
-            bool sell = true;
-            for (const auto& cond : strat.sell)
-                sell &= evaluateCondition(sim, cond, t);
-
-            if (!state.position_open && buy) {
-                state.position_open = true;
-                state.entry_price = prices[t];
-
-                std::cout << "[" << strat.name << "] BUY @ "
-                          << prices[t] << " (t=" << t << ")\n";
-            }
-            else if (state.position_open && sell) {
-                state.position_open = false;
-
-                double pnl = prices[t] - state.entry_price;
-                std::cout << "[" << strat.name << "] SELL @ "
-                          << prices[t] << " | PnL=" << pnl
-                          << " (t=" << t << ")\n";
-            }
-        }
-    }
-
-    // --------------------------------------------------
-    // 5. Force close
-    // --------------------------------------------------
-    for (size_t i = 0; i < strategies.size(); i++) {
-        if (states[i].position_open) {
-            double pnl = prices.back() - states[i].entry_price;
-            std::cout << "[" << strategies[i].name
-                      << "] FORCED EXIT | PnL=" << pnl << "\n";
-        }
-    }
+    std::cout << output.dump(2) << std::endl;
+    return 0;
 }

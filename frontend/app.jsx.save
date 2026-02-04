@@ -138,32 +138,47 @@ function App() {
           </button>
 
           {/* ===== DEBUG PAYLOAD (remove later) ===== */}
-          
+          <pre style={{ fontSize: 11, opacity: 0.6, marginTop: 12 }}>
+{JSON.stringify(
+  { buy: buyConditions, sell: sellConditions },
+  null,
+  2
+)}
+          </pre>
         </div>
 
         {/* -------- Metrics Panel -------- */}
-      <div className="right-panel">
-  {/* Charts go here */}
-  <div className="chart-placeholder card">
-    <span>Price Evolution</span>
-  </div>
+        {result?.metrics && (
+          <div className="metrics-grid">
+            <div
+              className={`card metric-card ${
+                result.metrics.total_pnl >= 0 ? "positive" : "negative"
+              }`}
+            >
+              <span>Total PnL</span>
+              <strong>{result.metrics.total_pnl}</strong>
+            </div>
 
-  <div className="chart-placeholder card">
-    <span>Cumulative PnL</span>
-  </div>
+            <div className="card metric-card">
+              <span>Max Drawdown</span>
+              <strong>{result.metrics.max_drawdown}</strong>
+            </div>
 
-  {/* Metrics */}
-  {result?.metrics && (
-    <div className="metrics-grid">
-      ...
-    </div>
-  )}
-</div>
+            <div className="card metric-card">
+              <span>Win Rate</span>
+              <strong>{(result.metrics.win_rate * 100).toFixed(1)}%</strong>
+            </div>
 
-        
+            <div className="card metric-card">
+              <span>Trades</span>
+              <strong>{result.metrics.num_trades}</strong>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default App;
+
