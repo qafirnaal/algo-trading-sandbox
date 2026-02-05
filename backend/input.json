@@ -1,1 +1,1 @@
-{"market": "trending", "timesteps": 100, "seed": 42, "strategy": {"type": "ma_crossover", "short_window": 3, "long_window": 5, "position_size": 1}}
+{"market": "Sideways", "timesteps": 1000, "seed": 42, "strategy": {"buy": [{"lhs": "RSI", "op": "<", "rhs_type": "CONSTANT", "rhs_value": 30, "rhs_signal": "Price"}], "sell": [{"lhs": "RSI", "op": ">", "rhs_type": "SIGNAL", "rhs_value": 0, "rhs_signal": "VOLATILITY"}]}}
